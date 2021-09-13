@@ -1,0 +1,83 @@
+<% layout('layouts/boilerplate')%>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+
+  <div class="col-6 offset-3">
+    <h1>Car Details</h1>
+    <div class="card">
+      <img src="<%= carDetails.Image %>" class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title"><%= carDetails.Manufacturer %> - <%= carDetails.Model %></h5>
+        <p class="card-text">Should be general Seller Description here!</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Year Manufactured - <%= carDetails.YearManufactured %></li>
+        <li class="list-group-item">Engine Volume - <%= carDetails.EngineVolume %></li>
+        <li class="list-group-item">Top Speed - <%= carDetails.TopSpeed %></li>
+        <li class="list-group-item">Price - <%= carDetails.Price %></li>
+      </ul>
+      <% if(currentUser && carDetails.User.equals(currentUser._id)){ %>  
+      <div class="card-body">
+        <a href="/cars/<%= carDetails._id %>/edit" class="card-link btn btn-info">Edit</a>
+        <form class="d-inline" action="/cars/<%= carDetails._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <%}%>
+    </div>
+  </div>
+  
+</div>
+<div  id='map' style='width: 100%; height: 300px;  '></div>
+<script>
+  
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3luY2hveiIsImEiOiJja3RjeHN6bnUyYWcyMm5xbGVudGRvNG1sIn0.n7U8bDJxNbAHoCwGDHPlog';
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+style: 'mapbox://styles/mapbox/streets-v11', // style URL
+center: [-77.034084142948, 38.909671288923], // starting position [lng, lat]
+zoom: 12 // starting zoom
+});
+  const stores = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.034084142948,
+          38.909671288923
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(202) 234-7336",
+        "phone": "2022347336",
+        "address": "1471 P St NW",
+        "city": "Washington DC",
+        "country": "United States",
+        "crossStreet": "at 15th St NW",
+        "postalCode": "20005",
+        "state": "D.C."
+      }
+    }
+  ]
+};
+stores.features.forEach(function (store, i) {
+  store.properties.id = i;
+});
+map.on('load', () => {
+  /* Add the data to your map as a layer */
+  map.addLayer({
+    id: 'locations',
+    type: 'circle',
+    /* Add a GeoJSON source containing place coordinates and information. */
+    source: {
+      type: 'geojson',
+      data: stores
+    }
+  });
+});
+</script>
+        

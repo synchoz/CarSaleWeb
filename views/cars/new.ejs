@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">New Car</h1>
+        <div class="col-6 offset-3">
+            <form action="/cars" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="Model" class="form-label">Model Name</label>
+                    <input type="text" id="Model" name="car[Model]" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Manufacturer" class="form-label">Manufacturer Name</label>
+                    <input type="text" id="Manufacturer" name="car[Manufacturer]" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Image" class="form-label">Upload Image</label>
+                    <input type="file" id="Image" name="Image" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="Location" class="form-label">Location</label>
+                    <input type="text" id="Location" name="car[Location]" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="YearManufactured" class="form-label">Year Manufactured</label>
+                    <input type="text" id="YearManufactured" name="car[YearManufactured]" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="EngineVolume" class="form-label">Engine Volume</label>
+                    <input type="text" id="EngineVolume" name="car[EngineVolume]" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="TopSpeed" class="form-label">Top Speed</label>
+                    <input type="text" id="TopSpeed" name="car[TopSpeed]" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Price" class="form-label">Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="text" id="Price" name="car[Price]" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+            <button class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    

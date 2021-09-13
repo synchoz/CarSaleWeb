@@ -1,0 +1,23 @@
+
+    <% layout('layouts/boilerplate')%>
+
+    <h1>Cars List</h1>
+    <h2>Manufacturers</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% for(let car of cars) {%>
+        <div class="col">
+        <div class="card" mb-3>
+            <img src="<%= car.Image %> " class="card-img-top" width="320" height="250">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= car.Manufacturer %> - <%= car.Model %> </h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="cars/<%= car._id %>" class="btn btn-primary">Show Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <% } %> 
+    </div>

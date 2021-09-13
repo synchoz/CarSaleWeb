@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate')%>
+        <h1>Edit Your Car here please!</h1>
+        <form action="/cars/<%= carToEdit._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="Model" class="form-label">Model Name</label>
+                <input type="text" id="Model" name="car[Model]" value="<%= carToEdit.Model %>" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Manufacturer" class="form-label">Manufacturer Name</label>
+                <input type="text" id="Manufacturer" name="car[Manufacturer]" class="form-control" value="<%= carToEdit.Manufacturer %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Location" class="form-label">Location</label>
+                <input type="text" id="Location" name="car[Location]" class="form-control" value="<%= carToEdit.Location %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="YearManufactured" class="form-label">Year Manufactured</label>
+                <input type="text" id="YearManufactured" name="car[YearManufactured]" class="form-control" value="<%= carToEdit.YearManufactured %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Image" class="form-label">Upload Image</label>
+                <input type="file" id="Image" name="Image" class="form-control">
+            </div>
+            
+            <div class="mb-3">
+                <label for="EngineVolume" class="form-label">Engine Volume</label>
+                <input type="text" id="EngineVolume" name="car[EngineVolume]" class="form-control" value="<%= carToEdit.EngineVolume %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="TopSpeed" class="form-label">Top Speed</label>
+                <input type="text" id="TopSpeed" name="car[TopSpeed]" class="form-control" value="<%= carToEdit.TopSpeed %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="Price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="text" id="Price" name="car[Price]" class="form-control" value="<%= carToEdit.Price %>" required>
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+            <button class="btn btn-success">Submit To Edit</button>
+            </form>
+            <a href="/cars">Back To List</a>
